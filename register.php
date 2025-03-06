@@ -14,8 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
         if ($conn->query($sql) === TRUE) {
-            header("Location: login.php");
-            exit();
+               echo "<script";
         } else {
             echo "Error: " . $conn->error;
         }
@@ -55,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <div class="container">
     <h2 class="text-center">Register</h2>
-    <form method="POST">
+    <form method="POST" action="register.php">
         <input type="text" name="name" class="form-control" placeholder="Full Name" required>
         <input type="email" name="email" class="form-control" placeholder="Email" required>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
