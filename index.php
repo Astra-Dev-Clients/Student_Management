@@ -164,6 +164,9 @@
             <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
             <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
         </nav>
+
+        <button type="button" class="btn btn-light">Login</button>
+        <button type="button" class="btn btn-success">Register</button>
         </div>
  </header>
 
