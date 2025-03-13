@@ -18,10 +18,6 @@ $user = mysqli_fetch_assoc($result);
 
 $name = $user['name'];
 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -148,7 +144,7 @@ $name = $user['name'];
 <!-- Main Content -->
 <main class="main-content mt-5">
     <div class="container-fluid">
-        <h2 class="mb-4">Hello <?=$name?> to Your Dashboard</h2>
+        <h2 class="mb-4">Welcome <?=$name?></h2>
         <p>Select an option from the sidebar.</p>
 
         <div class="row">
