@@ -158,15 +158,15 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto container">
         <div>
-        <h3 class="float-md-start mb-0">CitiFeed</h3>
+        <h3 class="float-md-start mb-0">EduTrack</h3>
         <nav class="nav nav-masthead justify-content-center float-md-end align-items-center justify-content-center">
             <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
             <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
             <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
         </nav>
 
-        <button type="button" class="btn btn-light">Login</button>
-        <button type="button" class="btn btn-success">Register</button>
+        <button type="button" onclick="window.location='./auth/index.php'" class="btn btn-light">Login</button>
+        <button type="button" onclick="window.location='./auth/signup.php'" class="btn btn-success">Register</button>
         </div>
  </header>
 
@@ -179,7 +179,7 @@
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>system <a href="https://getbootstrap.com/" class="text-white">Designed</a>, by <a href="https://twitter.com/mdo" class="text-white">@lance</a>.</p>
+    <p>EduTrack<a href="https://getbootstrap.com/" class="text-white">Alrights</a>, Reserved <a href="https://twitter.com/mdo" class="text-white">@2025</a>.</p>
   </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

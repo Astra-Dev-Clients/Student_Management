@@ -4,39 +4,38 @@ require '../database/db.php';
 $error = ""; // Initialize error message variable
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $username = trim($_POST['username']);  // Can be email or ID number
+    $email = trim($_POST['email']); // Username field should only accept email
     $password = trim($_POST['password']);
 
     // Validate user input
-    if (empty($username) || empty($password)) {
+    if (empty($email) || empty($password)) {
         $error = "Please fill in all fields.";
     } else {
-        // Check if user exists using either email or ID number
-        $sql = "SELECT id, u_name, pass FROM users WHERE email = ? OR id_number = ?";
+        // Check if user exists by email
+        $sql = "SELECT id, email, password FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username, $username);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
 
         if ($user) {
             // Verify password
-            if (password_verify($password, $user['pass'])) {
+            if (password_verify($password, $user['password'])) {
                 // Redirect with user ID in URL instead of using session
-                header("Location: ../dashboard/index.php?uid=" . urlencode($user['id']));
+                header("Location: ../dashboard.php?uid=" . urlencode($user['id']));
                 exit();
             } else {
-                $error = "Invalid username or password.";
+                $error = "Invalid email or password.";
             }
         } else {
             $error = "User not found.";
         }
+        $stmt->close();
     }
+    $conn->close();
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url("../Assets/img/graduates.jpg"); /* Background Image */
+            background-image: url("../Assets/img/graduates.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -114,8 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="login-container">
         <form class="login-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
             <h1>Student Manager</h1>
-            <label for="username">Username (Email or ID Number):</label>
-            <input type="text" id="username" name="username" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>

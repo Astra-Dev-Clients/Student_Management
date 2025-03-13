@@ -6,12 +6,11 @@ if(isset($_POST['submit'])){
 
 
 $name = $_POST['name'];
-$id = $_POST['id'];
 $email = $_POST['email'];
 $pass = $_POST['pass'];
 
-
-$sql ="INSERT INTO users(u_name,id_number, email, pass) VALUES('$name', '$id','$email','$pass')";
+// id, name, email, password, created_at
+$sql ="INSERT INTO users(name, email, password) VALUES('$name','$email','$pass')";
 
 $result = mysqli_query($conn, $sql);
 
@@ -37,7 +36,7 @@ if($result){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citizen Feedback Sign-In</title>
+    <title></title>
     <style>
         /* Light Mode Styles (Default) */
         body {
