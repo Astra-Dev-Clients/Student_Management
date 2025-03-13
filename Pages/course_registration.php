@@ -1,20 +1,34 @@
 <?php
-// Include database connection
-require_once "../database/db.php"; // Ensure this file has proper DB connection setup
 
+require_once "../database/db.php"; 
+
+// Fetch available courses from database
+$courses = [];
+$query = "SELECT id, course_name FROM courses";
+$result = $conn->query($query);
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $courses[] = $row;
+    }
+}
+
+// Fetch available semesters (Modify if stored in DB)
+$semesters = ["Fall", "Spring", "Summer"];
+
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_POST["user_id"]; // Assume user is logged in and ID is available
-    $course_name = $_POST["course_name"];
-    $course_code = $_POST["course_code"];
+    $course_id = $_POST["course_id"];
     $semester = $_POST["semester"];
 
-    // Insert course into database
-    $sql = "INSERT INTO courses (user_id, course_name, course_code, semester) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    if ($stmt->execute([$user_id, $course_name, $course_code, $semester])) {
+    // Insert into enrollments (assuming 'enrollments' table exists)
+    $insertQuery = "INSERT INTO enrollments (user_id, course_id, semester) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($insertQuery);
+    $stmt->bind_param("iis", $user_id, $course_id, $semester);
+
+    if ($stmt->execute()) {
         echo "<script>alert('Course registered successfully!'); window.location='dashboard.php';</script>";
     } else {
-        echo "<script>alert('Error registering course. Please try again.');</script>";
+        $message = "<div class='alert alert-danger'>Error registering course. Please try again.</div>";
     }
 }
 ?>
@@ -26,33 +40,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Registration</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f8f9fa;
+            color: #333;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            border-radius: 6px;
+        }
+        .btn-primary {
+            background: #0056b3;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #004494;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Course Registration</h2>
-        <form method="POST" action="">
-            <div class="mb-3">
-                <label class="form-label">User ID</label>
-                <input type="text" name="user_id" class="form-control" required>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <form method="POST" action="">
+                        <div class="mb-3">
+                            <label class="form-label">Select Course</label>
+                            <select name="course_id" class="form-control" required>
+                                <option value="">-- Select Course --</option>
+                                <?php foreach ($courses as $course): ?>
+                                    <option value="<?= $course['id']; ?>"><?= htmlspecialchars($course['course_name']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Semester</label>
+                            <select name="semester" class="form-control" required>
+                                <option value="">-- Select Semester --</option>
+                                <?php foreach ($semesters as $sem): ?>
+                                    <option value="<?= $sem; ?>"><?= $sem; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register Course</button>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Course Name</label>
-                <input type="text" name="course_name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Course Code</label>
-                <input type="text" name="course_code" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Semester</label>
-                <select name="semester" class="form-control" required>
-                    <option value="Fall">Fall</option>
-                    <option value="Spring">Spring</option>
-                    <option value="Summer">Summer</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+        </div>
     </div>
 </body>
 </html>

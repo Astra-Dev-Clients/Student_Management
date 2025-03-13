@@ -1,7 +1,28 @@
+<?php
+
+$id = $_GET['uid'];
+
+if(!isset($id)){
+    header('location: ./auth/index.php');
+}
+
+
+include "./database/db.php";
+
+$get_user = "SELECT * FROM users where id = $id";
+
+$result = mysqli_query($conn,$get_user);
+$user = mysqli_fetch_assoc($result);
+
+
+
+$name = $user['name'];
 
 
 
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,7 +148,7 @@
 <!-- Main Content -->
 <main class="main-content mt-5">
     <div class="container-fluid">
-        <h2 class="mb-4">Welcome to Your Dashboard</h2>
+        <h2 class="mb-4">Hello <?=$name?> to Your Dashboard</h2>
         <p>Select an option from the sidebar.</p>
 
         <div class="row">
