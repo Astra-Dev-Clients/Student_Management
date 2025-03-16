@@ -17,15 +17,12 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-
 if (!$user) {
     header("Location: ./auth/index.php"); // Redirect if user not found
     exit();
 }else{
     $name = $user['name'];
 }
-
-
 
 // Fetch total users
 $userQuery = "SELECT COUNT(*) as total_users FROM users";
@@ -41,8 +38,6 @@ $totalCourses = $courseResult->fetch_assoc()['total_courses'];
 $assignmentQuery = "SELECT COUNT(*) as total_assignments FROM assignments";
 $assignmentResult = $conn->query($assignmentQuery);
 $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
-
-
 ?>
 
 <!DOCTYPE html>
@@ -87,18 +82,72 @@ $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
         .card h5 {
             font-weight: bold;
         }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
-<!-- Sidebar -->
+<!-- Navbar for mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Manage Courses
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                        <li><a class="dropdown-item" href="./pages/add_course.php">Add Course</a></li>
+                        <li><a class="dropdown-item" href="./pages/view_courses.php">View Courses</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Manage Users
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+                        <li><a class="dropdown-item" href="./pages/view_users.php">View Users</a></li>
+                        <li><a class="dropdown-item" href="./pages/add_users.php">Add User</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="assignmentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Assignments
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="assignmentsDropdown">
+                        <li><a class="dropdown-item" href="./pages/set_assignment.php">Set Assignments</a></li>
+                        <li><a class="dropdown-item" href="view_assignments.php">View Assignments</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar for desktop -->
 <div class="sidebar d-none d-md-block">
     <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link active" href="#">Dashboard</a>
         </li>
-
-        <!-- Manage Courses Dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Manage Courses
@@ -108,19 +157,15 @@ $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
                 <li><a class="dropdown-item" href="./pages/view_courses.php">View Courses</a></li>
             </ul>
         </li>
-
-        <!-- Manage Users Dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Manage Users
             </a>
             <ul class="dropdown-menu" aria-labelledby="usersDropdown">
-                <li><a class="dropdown-item" href="manage_users.php">View Users</a></li>
-                <li><a class="dropdown-item" href="add_user.php">Add User</a></li>
+                <li><a class="dropdown-item" href="./pages/view_users.php">View Users</a></li>
+                <li><a class="dropdown-item" href="./pages/add_users.php">Add User</a></li>
             </ul>
         </li>
-
-        <!-- Update Assignments Dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="assignmentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Assignments
@@ -130,13 +175,11 @@ $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
                 <li><a class="dropdown-item" href="view_assignments.php">View Assignments</a></li>
             </ul>
         </li>
-
         <li class="nav-item">
             <a class="nav-link text-danger" href="logout.php">Logout</a>
         </li>
     </ul>
 </div>
-
 
 <!-- Main Content -->
 <main class="main-content">

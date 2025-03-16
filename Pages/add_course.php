@@ -4,17 +4,16 @@ require '../database/db.php'; // Include database connection
 $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_POST['user_id'];
     $course_name = trim($_POST['course_name']);
     $course_code = trim($_POST['course_code']);
     $semester = trim($_POST['semester']);
 
-    if (empty($user_id) || empty($course_name) || empty($course_code) || empty($semester)) {
+    if (empty($course_name) || empty($course_code) || empty($semester)) {
         $error = "All fields are required.";
     } else {
         // Insert course
-        $stmt = $conn->prepare("INSERT INTO courses (user_id, course_name, course_code, semester) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $user_id, $course_name, $course_code, $semester);
+        $stmt = $conn->prepare("INSERT INTO courses (course_name, course_code, semester) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $course_name, $course_code, $semester);
 
         if ($stmt->execute()) {
             $success = "Course added successfully!";
@@ -46,12 +45,7 @@ $conn->close();
         <div class="alert alert-success"><?= $success ?></div>
     <?php endif; ?>
 
-    <form method="POST">
-        <div class="mb-3">
-            <label for="user_id" class="form-label">User ID</label>
-            <input type="number" name="user_id" id="user_id" class="form-control" required>
-        </div>
-
+    <form method="POST" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="mb-3">
             <label for="course_name" class="form-label">Course Name</label>
             <input type="text" name="course_name" id="course_name" class="form-control" required>
@@ -73,7 +67,7 @@ $conn->close();
         </div>
 
         <button type="submit" class="btn btn-primary">Add Course</button>
-        <a href="admin_dashboard.php" class="btn btn-secondary">Back</a>
+        <!-- <a href="admin_dashboard.php" class="btn btn-secondary">Back</a> -->
     </form>
 </div>
 
