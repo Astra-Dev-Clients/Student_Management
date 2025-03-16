@@ -105,7 +105,7 @@ $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
             </a>
             <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
                 <li><a class="dropdown-item" href="./pages/add_course.php">Add Course</a></li>
-                <li><a class="dropdown-item" href="manage_courses.php">View Courses</a></li>
+                <li><a class="dropdown-item" href="./pages/view_courses.php">View Courses</a></li>
             </ul>
         </li>
 

@@ -58,7 +58,7 @@ $name = $user['name'];
         }
         .nav-link {
             font-weight: 500;
-            color: #333;
+            color: #fff;
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -154,7 +154,7 @@ $name = $user['name'];
                         <i class="bi bi-journal-text card-icon"></i>
                         <h5 class="card-title">Course Registration</h5>
                         <p class="card-text">Enroll in available courses.</p>
-                        <a href="course_registration.php" class="btn btn-light">Go</a>
+                        <a href="./pages/course_registration.php" class="btn btn-light">Go</a>
                     </div>
                 </div>
             </div>

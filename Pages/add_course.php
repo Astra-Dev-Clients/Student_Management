@@ -66,9 +66,9 @@ $conn->close();
             <label for="semester" class="form-label">Semester</label>
             <select name="semester" id="semester" class="form-select" required>
                 <option value="">Select Semester</option>
-                <option value="Semester 1">Semester 1</option>
-                <option value="Semester 2">Semester 2</option>
-                <option value="Semester 2">Semester 3</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
             </select>
         </div>
 
