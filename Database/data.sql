@@ -44,4 +44,13 @@ CREATE TABLE grades (
 );
 
 
+CREATE TABLE enrollments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    course_id INT NOT NULL,
+    semester ENUM('Fall', 'Spring', 'Summer') NOT NULL,
+    enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 ALTER TABLE `users` ADD `User_Role` VARCHAR(50) NOT NULL DEFAULT 'user' AFTER `password`;

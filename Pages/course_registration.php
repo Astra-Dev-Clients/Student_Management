@@ -1,6 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 require_once "../database/db.php"; 
+$user_id = $_GET["uid"];
 
 // Fetch available courses from database
 $courses = [];
@@ -19,16 +22,28 @@ $semesters = ["Fall", "Spring", "Summer"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $course_id = $_POST["course_id"];
     $semester = $_POST["semester"];
+    $user_id = $_GET["uid"];
 
-    // Insert into enrollments (assuming 'enrollments' table exists)
-    $insertQuery = "INSERT INTO enrollments (user_id, course_id, semester) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($insertQuery);
+    // Check if the user is already registered for the same course in the same semester
+    $checkQuery = "SELECT * FROM enrollments WHERE user_id = ? AND course_id = ? AND semester = ?";
+    $stmt = $conn->prepare($checkQuery);
     $stmt->bind_param("iis", $user_id, $course_id, $semester);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Course registered successfully!'); window.location='dashboard.php';</script>";
+    if ($result->num_rows > 0) {
+        $message = "<div class='alert alert-warning'>You are already registered for this course in the selected semester.</div>";
     } else {
-        $message = "<div class='alert alert-danger'>Error registering course. Please try again.</div>";
+        // Insert into enrollments (assuming 'enrollments' table exists)
+        $insertQuery = "INSERT INTO enrollments (user_id, course_id, semester) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($insertQuery);
+        $stmt->bind_param("iis", $user_id, $course_id, $semester);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Course registered successfully!'); window.location='../portal.php?uid=$user_id';</script>";
+        } else {
+            $message = "<div class='alert alert-danger'>Error registering course. Please try again.</div>";
+        }
     }
 }
 ?>
@@ -67,7 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container mt-5">
         <h2 class="text-center">Course Registration</h2>
         <div class="row justify-content-center">
-            <div class="col-md-6">
+                    <?php if (isset($message)) echo $message; ?>
+                    <form method="POST" action="">
                 <div class="card">
                     <form method="POST" action="">
                         <div class="mb-3">

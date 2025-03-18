@@ -135,8 +135,8 @@ $name = $user['name'];
 <div class="sidebar d-none d-md-block p-3">
     <h4 class="text-center">User Menu</h4>
     <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link" href="./pages/course_registration.php"><i class="bi bi-journal-text"></i> Course Registration</a></li>
-        <li class="nav-item"><a class="nav-link " href="assignment_tracking.php"><i class="bi bi-clipboard-check"></i> Assignments</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/course_registration.php?uid='<?=$id?>'"><i class="bi bi-journal-text"></i> Course Registration</a></li>
+        <li class="nav-item"><a class="nav-link " href="./pages/submit_assignment.php?uid=<?=$id?>"><i class="bi bi-clipboard-check"></i> Assignments</a></li>
         <li class="nav-item"><a class="nav-link" href="grades.php"><i class="bi bi-bar-chart-line"></i> Grades</a></li>
     </ul>
 </div>
@@ -154,7 +154,7 @@ $name = $user['name'];
                         <i class="bi bi-journal-text card-icon"></i>
                         <h5 class="card-title">Course Registration</h5>
                         <p class="card-text">Enroll in available courses.</p>
-                        <a href="./pages/course_registration.php" class="btn btn-light">Go</a>
+                        <a href="./pages/course_registration.php?uid=<?=$id?>" class="btn btn-light">Go</a>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@ $name = $user['name'];
                         <i class="bi bi-clipboard-check card-icon"></i>
                         <h5 class="card-title">Assignment Tracking</h5>
                         <p class="card-text">Check and submit assignments.</p>
-                        <a href="assignment_tracking.php" class="btn btn-light">Go</a>
+                        <a href="./pages/submit_assignment.php?uid=<?=$id?>" class="btn btn-light">Go</a>
                     </div>
                 </div>
             </div>
