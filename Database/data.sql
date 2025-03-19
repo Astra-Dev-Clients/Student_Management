@@ -35,12 +35,11 @@ CREATE TABLE assignments (
 -- Grades Table
 CREATE TABLE grades (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
     course_id INT NOT NULL,
     assignment_id INT NOT NULL,
     grade VARCHAR(10) NOT NULL,
-    remarks TEXT,
-    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
-    FOREIGN KEY (assignment_id) REFERENCES assignments(id) ON DELETE CASCADE
+    remarks TEXT
 );
 
 
@@ -52,5 +51,13 @@ CREATE TABLE enrollments (
     enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
+CREATE TABLE responses (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    assignment_id INT(6) UNSIGNED NOT NULL,
+    student_id int,
+    file_name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 ALTER TABLE `users` ADD `User_Role` VARCHAR(50) NOT NULL DEFAULT 'user' AFTER `password`;

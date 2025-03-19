@@ -174,7 +174,7 @@ $name = $user['name'];
                         <i class="bi bi-bar-chart-line card-icon"></i>
                         <h5 class="card-title">Grades</h5>
                         <p class="card-text">View your course grades.</p>
-                        <a href="grades.php" class="btn btn-light">Go</a>
+                        <a href="./pages/view_grades.php?uid=<?=$id?>"" class="btn btn-light">Go</a>
                     </div>
                 </div>
             </div>
