@@ -118,14 +118,14 @@ $name = $user['name'];
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Dashboard</a>
+        <a class="navbar-brand text-light" href="#">Dashboard</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="#">Profile</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="#">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -138,6 +138,7 @@ $name = $user['name'];
         <li class="nav-item"><a class="nav-link" href="./pages/course_registration.php?uid='<?=$id?>'"><i class="bi bi-journal-text"></i> Course Registration</a></li>
         <li class="nav-item"><a class="nav-link " href="./pages/submit_assignment.php?uid=<?=$id?>"><i class="bi bi-clipboard-check"></i> Assignments</a></li>
         <li class="nav-item"><a class="nav-link" href="grades.php"><i class="bi bi-bar-chart-line"></i> Grades</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/view_messages.php"><i class="bi bi-envelope"></i> Messages</a></li>
     </ul>
 </div>
 
@@ -174,7 +175,7 @@ $name = $user['name'];
                         <i class="bi bi-bar-chart-line card-icon"></i>
                         <h5 class="card-title">Grades</h5>
                         <p class="card-text">View your course grades.</p>
-                        <a href="./pages/view_grades.php?uid=<?=$id?>"" class="btn btn-light">Go</a>
+                        <a href="./pages/view_grades.php?uid=<?=$id?>" class="btn btn-light">Go</a>
                     </div>
                 </div>
             </div>

@@ -164,17 +164,22 @@
             <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
             <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
         </nav>
-
+           
+        <div class="mt-4">
         <button type="button" onclick="window.location='./auth/index.php'" class="btn btn-light">Login</button>
         <button type="button" onclick="window.location='./auth/signup.php'" class="btn btn-success">Register</button>
+        </div>
         </div>
  </header>
 
   <main class="px-3 container">
-    <h1>Cover your page.</h1>
-    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+    <h1>
+📚 Effortless Student Management Made Simple! 🎓
+
+</h1>
+    <p class="lead">A powerful and easy-to-use Student Management System designed for schools, colleges, and universities. Track student records, manage courses, and streamline academic administration—all in one place.</p>
     <p class="lead">
-      <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+      <!-- <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a> -->
     </p>
   </main>
 

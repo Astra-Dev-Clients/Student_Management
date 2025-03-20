@@ -134,6 +134,15 @@ $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
                         <li><a class="dropdown-item" href="view_assignments.php">View Assignments</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="assignmentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Messages
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="assignmentsDropdown">
+                        <li><a class="dropdown-item" href="./pages/set_assignment.php">Send Messages</a></li>
+                        <li><a class="dropdown-item" href="view_assignments.php">View Messages</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-danger" href="logout.php">Logout</a>
                 </li>
@@ -175,6 +184,16 @@ $totalAssignments = $assignmentResult->fetch_assoc()['total_assignments'];
                 <li><a class="dropdown-item" href="./pages/mark_assignments.php">View Assignments</a></li>
             </ul>
         </li>
+
+        <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="assignmentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Messages
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="assignmentsDropdown">
+                        <li><a class="dropdown-item" href="./pages/send_message.php">Send Messages</a></li>
+                        <li><a class="dropdown-item" href="./pages/view_messages.php">View Messages</a></li>
+                    </ul>
+                </li>
         <li class="nav-item">
             <a class="nav-link text-danger" href="logout.php">Logout</a>
         </li>

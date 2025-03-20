@@ -60,4 +60,12 @@ CREATE TABLE responses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
+create table messages (
+    id int(6) unsigned auto_increment primary key,
+     subject varchar(100) not null,
+    message text not null,
+    created_at timestamp default current_timestamp
+);
+
 ALTER TABLE `users` ADD `User_Role` VARCHAR(50) NOT NULL DEFAULT 'user' AFTER `password`;

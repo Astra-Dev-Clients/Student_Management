@@ -16,7 +16,7 @@ if ($result && $result->num_rows > 0) {
 }
 
 // Fetch available semesters (Modify if stored in DB)
-$semesters = ["Fall", "Spring", "Summer"];
+$semesters = ["Semester 1", "Semester 2", "Semester 3"];
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

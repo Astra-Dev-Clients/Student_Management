@@ -114,7 +114,7 @@ if($result){
 </head>
 <body>
     <div class="container">
-        <h1>Citizen Feedback Sign-In</h1>
+        <h1>Edu track signup </h1>
         <form action="signup.php" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
