@@ -4,31 +4,23 @@ include '../Database/db.php';
 
 if(isset($_POST['submit'])){
 
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // Hash the password
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$pass = $_POST['pass'];
+    // id, name, email, password, created_at
+    $sql ="INSERT INTO users(name, email, password) VALUES('$name','$email','$pass')";
 
-// id, name, email, password, created_at
-$sql ="INSERT INTO users(name, email, password) VALUES('$name','$email','$pass')";
+    $result = mysqli_query($conn, $sql);
 
-$result = mysqli_query($conn, $sql);
-
-if($result){
-    echo"<script>alert('User Registered Successfully!')</script>";
-}else{
-    echo"<script>alert('There was an error kindly try again')</script>";
+    if($result){
+        echo"<script>alert('User Registered Successfully!')</script>";
+    }else{
+        echo"<script>alert('There was an error kindly try again')</script>";
+    }
 }
-
-
-
-
-}
-
-
 
 ?>
-
 
 
 <!DOCTYPE html>

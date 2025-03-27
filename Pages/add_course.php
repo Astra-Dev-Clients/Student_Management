@@ -12,8 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "All fields are required.";
     } else {
         // Insert course
-        $stmt = $conn->prepare("INSERT INTO courses (course_name, course_code, semester) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $course_name, $course_code, $semester);
+        $user_id = 1; // Replace with the actual user ID or fetch dynamically
+        $stmt = $conn->prepare("INSERT INTO courses (course_name, course_code, semester, user_id) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("sssi", $course_name, $course_code, $semester, $user_id);
 
         if ($stmt->execute()) {
             $success = "Course added successfully!";

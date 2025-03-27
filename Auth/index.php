@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email) || empty($password)) {
         $error = "Please fill in all fields.";
     } else {
+        // Hash the password before checking
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         // Check if user exists by email
         $sql = "SELECT id, email, password FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
