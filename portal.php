@@ -125,7 +125,7 @@ $name = $user['name'];
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link text-light" href="#">Profile</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="#">Logout</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="./auth/index.php">Logout</a></li>
             </ul>
         </div>
     </div>

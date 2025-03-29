@@ -16,12 +16,12 @@ if ($result && $result->num_rows > 0) {
 }
 
 // Fetch available semesters (Modify if stored in DB)
-$semesters = ["Semester 1", "Semester 2", "Semester 3"];
+$semesters = [1 => "Semester 1", 2 => "Semester 2", 3 => "Semester 3"]; // Use integer keys for semesters
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $course_id = $_POST["course_id"];
-    $semester = $_POST["semester"];
+    $semester = intval($_POST["semester"]); // Convert semester to an integer if required
     $user_id = $_GET["uid"];
 
     // Check if the user is already registered for the same course in the same semester
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <select name="semester" class="form-control" required>
                                 <option value="">-- Select Semester --</option>
                                 <?php foreach ($semesters as $sem): ?>
-                                    <option value="<?= $sem; ?>"><?= $sem; ?></option>
+                                    <option value="<?= $key; ?>"><?= $sem; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

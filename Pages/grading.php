@@ -33,16 +33,21 @@ $stmt->bind_result($student_name);
 $stmt->fetch();
 $stmt->close();
 
-// Fetch assignment title
+// Fetch assignment title and course_id
 $assignment_id = $response['assignment_id'];
 $assignment_title = '';
-$assignment_query = "SELECT title FROM assignments WHERE id = ?";
+$course_id = null;
+$assignment_query = "SELECT title, course_id FROM assignments WHERE id = ?";
 $stmt = $conn->prepare($assignment_query);
 $stmt->bind_param("i", $assignment_id);
 $stmt->execute();
-$stmt->bind_result($assignment_title);
+$stmt->bind_result($assignment_title, $course_id);
 $stmt->fetch();
 $stmt->close();
+
+if (!$course_id) {
+    die("Course ID not found for the assignment.");
+}
 
 // Handle form submission for grading
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -55,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param(
         "iiiss",
         $response['student_id'],
-        $response['course_id'],
+        $course_id,
         $assignment_id,
         $grade,
         $remarks
