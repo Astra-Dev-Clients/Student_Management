@@ -124,7 +124,7 @@ $name = $user['name'];
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link text-light" href="#">Profile</a></li>
+                <!-- <li class="nav-item"><a class="nav-link text-light" href="#">Profile</a></li> -->
                 <li class="nav-item"><a class="nav-link text-light" href="./auth/index.php">Logout</a></li>
             </ul>
         </div>
@@ -137,7 +137,7 @@ $name = $user['name'];
     <ul class="nav flex-column">
         <li class="nav-item"><a class="nav-link" href="./pages/course_registration.php?uid='<?=$id?>'"><i class="bi bi-journal-text"></i> Course Registration</a></li>
         <li class="nav-item"><a class="nav-link " href="./pages/submit_assignment.php?uid=<?=$id?>"><i class="bi bi-clipboard-check"></i> Assignments</a></li>
-        <li class="nav-item"><a class="nav-link" href="grades.php"><i class="bi bi-bar-chart-line"></i> Grades</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/view_grades.php?uid=<?=$id?>"><i class="bi bi-bar-chart-line"></i> Grades</a></li>
         <li class="nav-item"><a class="nav-link" href="./pages/view_messages.php"><i class="bi bi-envelope"></i> Messages</a></li>
     </ul>
 </div>
