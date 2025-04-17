@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "All fields are required.";
     } else {
         // Insert course
-        $user_id = 1; // Replace with the actual user ID or fetch dynamically
+        $user_id = 18; // Replace with the actual user ID or fetch dynamically
         $stmt = $conn->prepare("INSERT INTO courses (course_name, course_code, semester, user_id) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("sssi", $course_name, $course_code, $semester, $user_id);
 
